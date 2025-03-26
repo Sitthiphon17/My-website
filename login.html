@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สร้างบัญชีใหม่</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>สร้างบัญชีใหม่</h2>
+        <form id="signupForm">
+            <!-- ช่องสำหรับอีเมลหรือเบอร์โทร -->
+            <div class="input-group">
+                <input type="text" id="emailOrPhone" placeholder="อีเมล หรือ เบอร์โทร" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="รหัสผ่าน" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="confirmPassword" placeholder="ยืนยันรหัสผ่าน" required>
+            </div>
+            <button type="submit">สร้างบัญชี</button>
+        </form>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
