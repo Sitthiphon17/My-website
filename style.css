@@ -1,0 +1,46 @@
+body {
+    background-image: url('https://www.toptal.com/designers/subtlepatterns/patterns/dark_wood.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* ให้ความสูงของ body เต็มจอ */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* จัดให้เนื้อหากลางจอทั้งแนวตั้งและแนวนอน */
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.6); /* พื้นหลังทึบของฟอร์ม */
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center; /* จัดข้อความในฟอร์มให้กลาง */
+}
+
+h2 {
+    color: #fff;
+    font-size: 2em; /* ปรับขนาดตัวอักษรใหญ่ขึ้น */
+}
+
+input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box; /*คำนวณขนาดรวม padding และ border */
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+}
