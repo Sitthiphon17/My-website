@@ -1,22 +1,29 @@
+console.log("Signup.js loaded!");
+
 document.getElementById("signupForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // ป้องกันการรีเฟรชหน้า
-    console.log("Form Submitted!"); // ตรวจสอบว่าฟอร์มถูกเรียกใช้
+    event.preventDefault();  // ป้องกันการโหลดหน้าใหม่
 
     let emailOrPhone = document.getElementById("emailOrPhone").value;
     let password = document.getElementById("password").value;
     let confirmPassword = document.getElementById("confirmPassword").value;
 
-    console.log("Email/Phone:", emailOrPhone);
-    console.log("Password:", password);
-    console.log("Confirm Password:", confirmPassword);
+    // Regular expressions สำหรับตรวจสอบอีเมลและเบอร์โทร
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const phoneRegex = /^[0-9]{10}$/;
 
-    if (password !== confirmPassword) {
-        alert("รหัสผ่านไม่ตรงกัน!");
+    // ตรวจสอบว่าเป็นอีเมลหรือเบอร์โทร
+    if (!emailOrPhone.match(emailRegex) && !emailOrPhone.match(phoneRegex)) {
+        alert("กรุณากรอกอีเมลหรือเบอร์โทรที่ถูกต้อง");
         return;
     }
 
-    alert("สร้างบัญชีสำเร็จ!");
-    console.log("Redirecting to profile.html...");
-    
-    window.location.href = "profile.html"; // ส่งไปยังหน้าโปรไฟล์
+    // ตรวจสอบรหัสผ่าน
+    if (password !== confirmPassword) {
+        alert("รหัสผ่านและยืนยันรหัสผ่านไม่ตรงกัน");
+        return;
+    }
+
+    // ถ้าผ่านการตรวจสอบทั้งหมด
+    alert("สร้างบัญชีสำเร็จ");
+    window.location.href = "profile.html";  // เปลี่ยนไปยังหน้าที่ต้องการ
 });
