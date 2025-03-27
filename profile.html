@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรไฟล์</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>ยินดีต้อนรับ!</h2>
+        <p id="userInfo">กำลังโหลดข้อมูล...</p>
+        <button onclick="logout()">ออกจากระบบ</button>
+    </div>
+
+    <script>
+        // โหลดข้อมูลผู้ใช้จาก Local Storage
+        document.addEventListener("DOMContentLoaded", function() {
+            let user = localStorage.getItem("user");
+            if (user) {
+                document.getElementById("userInfo").textContent = "ผู้ใช้: " + user;
+            } else {
+                window.location.href = "login.html"; // กลับไปล็อกอินถ้าไม่มีข้อมูล
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem("user"); // ล้างข้อมูลผู้ใช้
+            window.location.href = "login.html"; // กลับไปหน้าเข้าสู่ระบบ
+        }
+    </script>
+</body>
+</html>
