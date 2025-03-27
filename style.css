@@ -7,40 +7,48 @@ body {
     color: white;
     margin: 0;
     padding: 0;
-    height: 100vh; /* ให้ความสูงของ body เต็มจอ */
+    height: 100vh; /* ให้ body มีความสูงเต็มจอ */
     display: flex;
     justify-content: center;
-    align-items: center; /* จัดให้เนื้อหากลางจอทั้งแนวตั้งและแนวนอน */
+    align-items: center;
 }
 
 .container {
-    background: rgba(0, 0, 0, 0.6); /* พื้นหลังทึบของฟอร์ม */
-    padding: 20px;
+    background: rgba(0, 0, 0, 0.7); /* เพิ่มความเข้มให้มองเห็นชัดขึ้น */
+    padding: 30px;
     border-radius: 10px;
-    width: 300px;
-    text-align: center; /* จัดข้อความในฟอร์มให้กลาง */
+    width: 350px;
+    text-align: center;
 }
 
 h2 {
     color: #fff;
-    font-size: 2em; /* ปรับขนาดตัวอักษรใหญ่ขึ้น */
+    font-size: 2em; /* ขนาดตัวอักษรใหญ่ขึ้น */
+    margin-bottom: 20px;
 }
 
-input[type="email"], input[type="password"] {
-    width: 100%;
-    padding: 10px;
+input {
+    width: calc(100% - 20px); /* ปรับขนาด input ให้สมดุล */
+    padding: 12px;
     margin: 10px 0;
     border: none;
     border-radius: 5px;
-    box-sizing: border-box; /*คำนวณขนาดรวม padding และ border */
+    box-sizing: border-box;
+    font-size: 16px;
 }
 
 button {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background-color: #4CAF50;
     border: none;
     border-radius: 5px;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
 }
