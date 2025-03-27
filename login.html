@@ -3,41 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เข้าสู่ระบบ</title>
+    <title>สร้างบัญชี</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h2>เข้าสู่ระบบ</h2>
-        <form id="loginForm">
+        <h2>สร้างบัญชี</h2>
+        <form id="signupForm">
             <div class="input-group">
-                <input type="email" id="email" placeholder="อีเมล" required>
+                <input type="text" id="emailOrPhone" placeholder="อีเมลหรือเบอร์โทร" required>
             </div>
             <div class="input-group">
                 <input type="password" id="password" placeholder="รหัสผ่าน" required>
             </div>
-            <button type="submit">ล็อกอิน</button>
+            <div class="input-group">
+                <input type="password" id="confirmPassword" placeholder="ยืนยันรหัสผ่าน" required>
+            </div>
+            <button type="submit">สร้างบัญชี</button>
         </form>
-        <div id="loginSuccess" style="display: none;">
-            <!-- ลิงค์ไปยังหน้าแดชบอร์ด -->
-            <a href="dashboard.html">ไปยังแดชบอร์ด</a>
+        <div id="signupSuccess" style="display: none;">
+            <a href="profile.html">ไปยังโปรไฟล์</a>
         </div>
     </div>
 
     <script>
-        document.getElementById("loginForm").addEventListener("submit", function(event) {
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
             event.preventDefault();  // ป้องกันการโหลดหน้าใหม่
 
-            let email = document.getElementById("email").value;
+            let emailOrPhone = document.getElementById("emailOrPhone").value;
             let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
 
-            if (email === "test@example.com" && password === "1234") {
-                alert("ล็อกอินสำเร็จ!");
-                document.getElementById("loginSuccess").style.display = "block";  // แสดงลิงค์ไปยังหน้าแดชบอร์ด
-                window.location.href = "dashboard.html"; // หรือเปลี่ยนหน้าไปยัง dashboard.html โดยตรง
-            } else {
-                alert("อีเมลหรือรหัสผ่านไม่ถูกต้อง!");
+            // Regular expressions สำหรับตรวจสอบอีเมลและเบอร์โทร
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const phoneRegex = /^[0-9]{10}$/;
+
+            // ตรวจสอบว่าเป็นอีเมลหรือเบอร์โทร
+            if (!emailOrPhone.match(emailRegex) && !emailOrPhone.match(phoneRegex)) {
+                alert("กรุณากรอกอีเมลหรือเบอร์โทรที่ถูกต้อง");
+                return;
             }
+
+            // ตรวจสอบรหัสผ่าน
+            if (password !== confirmPassword) {
+                alert("รหัสผ่านและยืนยันรหัสผ่านไม่ตรงกัน");
+                return;
+            }
+
+            // ถ้าผ่านการตรวจสอบทั้งหมด
+            alert("สร้างบัญชีสำเร็จ");
+            window.location.href = "profile.html";  // เปลี่ยนไปยังหน้าที่ต้องการ
         });
     </script>
 </body>
