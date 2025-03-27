@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ป้อนอาการ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>ป้อนอาการของคุณ</h2>
+        <form id="symptomForm">
+            <div class="input-group">
+                <textarea id="symptoms" placeholder="กรอกอาการที่คุณพบ เช่น ปวดหัว มีไข้ ไอแห้ง ฯลฯ" required></textarea>
+            </div>
+            <button type="submit">ส่งข้อมูล</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById("symptomForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let symptoms = document.getElementById("symptoms").value;
+
+            // ส่งอาการไปยังเซิร์ฟเวอร์เพื่อวิเคราะห์
+            fetch('/analyze-symptoms', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ symptoms: symptoms })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("result").innerHTML = `<p><strong>ผลการวิเคราะห์:</strong> ${data.result}</p>`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

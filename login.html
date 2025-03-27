@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>เข้าสู่ระบบ</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="email" id="email" placeholder="อีเมล" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="รหัสผ่าน" required>
+            </div>
+            <button type="submit">ล็อกอิน</button>
+        </form>
+        <div id="loginSuccess" style="display: none;">
+            <!-- ลิงค์ไปยังหน้าแดชบอร์ด -->
+            <a href="dashboard.html">ไปยังแดชบอร์ด</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();  // ป้องกันการโหลดหน้าใหม่
+
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            if (email === "test@example.com" && password === "1234") {
+                alert("ล็อกอินสำเร็จ!");
+                document.getElementById("loginSuccess").style.display = "block";  // แสดงลิงค์ไปยังหน้าแดชบอร์ด
+                window.location.href = "dashboard.html"; // หรือเปลี่ยนหน้าไปยัง dashboard.html โดยตรง
+            } else {
+                alert("อีเมลหรือรหัสผ่านไม่ถูกต้อง!");
+            }
+        });
+    </script>
+</body>
+</html>

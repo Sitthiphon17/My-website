@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรไฟล์ผู้ใช้</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>ข้อมูลโปรไฟล์ของคุณ</h2>
+        <form id="profileForm">
+            <div class="input-group">
+                <input type="text" id="name" placeholder="ชื่อจริง" required>
+            </div>
+            <div class="input-group">
+                <input type="number" id="age" placeholder="อายุ" required>
+            </div>
+            <div class="input-group">
+                <label for="gender">เพศ:</label>
+                <select id="gender" required>
+                    <option value="male">ชาย</option>
+                    <option value="female">หญิง</option>
+                    <option value="other">ไม่ระบุเพศ</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <input type="text" id="address" placeholder="ที่อยู่" required>
+            </div>
+            <div class="input-group">
+                <input type="tel" id="phone" placeholder="หมายเลขโทรศัพท์" required>
+            </div>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="อีเมล" required>
+            </div>
+            <div class="input-group">
+                <label for="profileImage">โปรไฟล์ภาพ:</label>
+                <input type="file" id="profileImage" accept="image/*">
+            </div>
+            <button type="submit">บันทึกข้อมูล</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("profileForm").addEventListener("submit", function(event) {
+            event.preventDefault();  // ป้องกันการรีเฟรชหน้า
+
+            let name = document.getElementById("name").value;
+            let age = document.getElementById("age").value;
+            let gender = document.getElementById("gender").value;
+            let address = document.getElementById("address").value;
+            let phone = document.getElementById("phone").value;
+            let email = document.getElementById("email").value;
+            let profileImage = document.getElementById("profileImage").files[0];  // รับไฟล์โปรไฟล์ภาพ
+
+            // ตัวอย่างการบันทึกข้อมูล (สามารถส่งไปยังเซิร์ฟเวอร์ได้)
+            alert("ข้อมูลของคุณได้ถูกบันทึก: \nชื่อ: " + name + "\nอายุ: " + age + "\nเพศ: " + gender + "\nที่อยู่: " + address + "\nโทรศัพท์: " + phone + "\nอีเมล: " + email + "\nโปรไฟล์ภาพ: " + (profileImage ? profileImage.name : "ไม่มี"));
+        });
+    </script>
+</body>
+</html>
