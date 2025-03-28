@@ -4,9 +4,8 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #ffffff; /* เปลี่ยนพื้นหลังเป็นสีขาว */
-    font-family: 'Arial', sans-serif;
-    color: #333; /* เปลี่ยนสีตัวอักษรให้เข้ากับพื้นหลัง */
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
 }
 
 .container {
@@ -24,19 +23,21 @@ h2 {
     margin-bottom: 20px;
 }
 
-p {
-    font-size: 1.5em;
-    line-height: 1.6;
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
 }
 
 button {
-    font-size: 1.2em;
-    padding: 10px 20px;
-    margin-top: 15px;
-    border: none;
-    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
     background-color: #4CAF50;
+    border-radius: 5px;
     color: white;
+    font-size: 1.2em;
     cursor: pointer;
 }
 
