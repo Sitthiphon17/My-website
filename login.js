@@ -9,8 +9,9 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
 
     if (emailOrPhone === storedEmailOrPhone && password === storedPassword) {
         alert("เข้าสู่ระบบสำเร็จ");
-        console.log("เปลี่ยนหน้าไปยัง dashboard.html"); // ตรวจสอบใน Console
-        window.location.href = "dashboard.html"; // เปลี่ยนไปหน้าหลัก
+            console.log("กำลังเปลี่ยนหน้า...");
+            window.location.href = "dashboard.html"; 
+
     } else {
         alert("อีเมล/เบอร์โทร หรือรหัสผ่านไม่ถูกต้อง");
     }
