@@ -3,22 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เข้าสู่ระบบ</title>
+    <title>ยินดีต้อนรับ</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h2>เข้าสู่ระบบ</h2>
-        <form id="loginForm">
-            <div class="input-group">
-                <input type="text" id="emailOrPhone" placeholder="อีเมล หรือ เบอร์โทร" required>
-            </div>
-            <div class="input-group">
-                <input type="password" id="password" placeholder="รหัสผ่าน" required>
-            </div>
-            <button type="submit">ล็อกอิน</button>
-        </form>
+        <h1>ยินดีต้อนรับเข้าสู่</h1>
+        <h2 class="brand-name">HealthBot</h2>
+        <a href="login.html" class="btn">เข้าสู่ระบบ</a>
     </div>
-    <script src="login.js" defer></script>
 </body>
 </html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let isLoggedIn = localStorage.getItem("userEmailOrPhone") && localStorage.getItem("userPassword");
+    
+        if (isLoggedIn) {
+            console.log("🔄 ผู้ใช้ล็อกอินอยู่ กำลังเปลี่ยนหน้าไป dashboard.html");
+            window.location.href = "dashboard.html";
+        }
+    });
+    </script>
+    
