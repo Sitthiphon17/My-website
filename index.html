@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthBot Login</title>
+</head>
+<body>
+    <h1>HealthBot Login</h1>
+    
+    <!-- Form for email or phone login -->
+    <label for="emailOrPhone">Email or Phone</label>
+    <input type="text" id="emailOrPhone" placeholder="Enter email or phone" required>
+    
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Enter password" required>
+    
+    <label for="confirmPassword">Confirm Password</label>
+    <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+    
+    <button onclick="login()">Login</button>
+    <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+
+    <!-- Firebase -->
+    <script type="module">
+        import { app } from './firebase.js';  // นำเข้า app ที่เราตั้งค่า Firebase ไว้
+        import { getAuth, signInWithEmailAndPassword, signInWithPhoneNumber, RecaptchaVerifier } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+        const auth = getAuth(app);  // เชื่อมต่อกับ Firebase Authentication
+        
+        // ฟังก์ชันสำหรับการล็อกอิน
+        function login() {
+            const emailOrPhone = document.getElementById("emailOrPhone").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+
+            // ตรวจสอบว่ารหัสผ่านและยืนยันรหัสตรงกันไหม
+            if (password !== confirmPassword) {
+                alert("Password and Confirm Password do not match!");
+                return;
+            }
+
+            // เช็คว่าเป็น email หรือ phone
+            if (emailOrPhone.includes('@')) {
+                // กรณีใช้ email
+                signInWithEmailAndPassword(auth, emailOrPhone, password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        console.log("Login successful with email:", user);
+                        window.location.href = "dashboard.html";  // ไปที่หน้าหลักหลังจากล็อกอินสำเร็จ
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        alert("Error: " + errorMessage);
+                    });
+            } else {
+                // กรณีใช้ phone number
+                const recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+                    size: 'invisible',
+                    callback: (response) => {
+                        // การตรวจสอบ reCAPTCHA
+                        console.log(response);
+                    }
+                }, auth);
+
+                signInWithPhoneNumber(auth, emailOrPhone, recaptchaVerifier)
+                    .then((confirmationResult) => {
+                        const code = prompt("Enter the OTP sent to your phone:");
+                        return confirmationResult.confirm(code);
+                    })
+                    .then((result) => {
+                        const user = result.user;
+                        console.log("Login successful with phone:", user);
+                        window.location.href = "dashboard.html";  // ไปที่หน้าหลักหลังจากล็อกอินสำเร็จ
+                    })
+                    .catch((error) => {
+                        const errorMessage = error.message;
+                        alert("Error: " + errorMessage);
+                    });
+            }
+        }
+    </script>
+
+    <!-- reCAPTCHA Container for phone authentication -->
+    <div id="recaptcha-container"></div>
+</body>
+</html>

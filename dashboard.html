@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthBot - Dashboard</title>
+</head>
+<body>
+    <h1>Welcome to HealthBot Dashboard</h1>
+    <p>Welcome, <span id="userName"></span></p>
+    <a href="symptoms.html">Enter Symptoms</a>
+    <button onclick="logout()">Logout</button>
+
+    <script type="module">
+        import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { firebaseConfig } from './firebase.js';
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        
+        // รับข้อมูลผู้ใช้
+        const user = auth.currentUser;
+        if (user) {
+            document.getElementById("userName").textContent = user.email;
+        } else {
+            window.location.href = "index.html"; // ถ้าไม่ได้ล็อกอิน จะกลับไปที่หน้า login
+        }
+
+        // ฟังก์ชันออกจากระบบ
+        function logout() {
+            signOut(auth).then(() => {
+                window.location.href = "index.html";
+            }).catch((error) => {
+                alert("Error: " + error.message);
+            });
+        }
+    </script>
+</body>
+</html>

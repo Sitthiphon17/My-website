@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthBot - Enter Symptoms</title>
+</head>
+<body>
+    <h1>HealthBot - Enter Symptoms</h1>
+    <input type="text" id="symptom" placeholder="Enter your symptoms">
+    <button onclick="submitSymptom()">Submit</button>
+    
+    <p id="advice"></p>
+    
+    <script>
+        function submitSymptom() {
+            const symptom = document.getElementById("symptom").value;
+            const adviceElement = document.getElementById("advice");
+
+            // ตัวอย่างคำแนะนำ
+            let advice = "";
+            if (symptom.toLowerCase().includes("headache")) {
+                advice = "You may have a headache. Try resting in a quiet place and drinking water.";
+            } else {
+                advice = "Please consult a healthcare provider for proper diagnosis.";
+            }
+            
+            adviceElement.textContent = advice;
+        }
+    </script>
+</body>
+</html>
